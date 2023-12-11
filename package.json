@@ -1,5 +1,5 @@
 {
-  "name": "@extracker",
+  "name": "@zhid0399123/extracker",
   "version": "0.0.0",
   "description": "Excercise Tracking API: Developed using Express and Node.js, facilitate the management and monitoring of user exercises.",
   "main": "src/bin/index.js",
