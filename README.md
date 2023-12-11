@@ -1,4 +1,4 @@
-## extracker
+# extracker
 
 The Exercise Tracker API, developed using Express and Node.js, is a powerful tool designed to facilitate the management and monitoring of user exercises. Leveraging the robustness of Node.js and the simplicity of Express, this API offers a seamless platform with endpoints for user registration, exercise addition, and exercise log retrieval. It enables users to easily register, log various exercises, and retrieve exercise history, providing a flexible and scalable solution for tracking and analyzing exercises."
 
