@@ -1,0 +1,108 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-size: 10px;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #1a1a1aff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  max-width: 1280px;
+}
+
+hr {
+  border: 1px solid rgba(128, 128, 128, 0.209);
+  border-top: none;
+  max-width: 1280px;
+}
+
+h1 {
+  font-size: 2.8rem;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: normal;
+  white-space: pre;
+}
+
+p {
+  font-size: 1.6rem;
+}
+
+span {
+  font-size: 1.4rem;
+  font-family: "Courier New", Courier, monospace;
+  background-color: rgba(128, 128, 128, 0.205);
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  gap: 24px;
+}
+
+.footer > a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer > a > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.4rem;
+}
+
+main {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-inline: 2rem;
+  max-width: 1280px;
+}
+
+main > hr:first-child {
+  margin-bottom: 4rem;
+}
+
+a > p,
+main > p {
+  font-size: 1.4rem;
+}
+
+#resource-link > p {
+  height: 24px;
+  font-size: 1.4rem;
+}
+
+@media screen and (max-width: 360px) {
+  hr,
+  main {
+    width: 320px;
+  }
+}
