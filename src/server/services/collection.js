@@ -1,4 +1,5 @@
-const mongodb = require("./mongodb");
+require("dotenv").config();
+const MongoDbclient = require("./mongodb");
 
 /** Class containing static method to ease read and write operation in mongodb database, using MongoClient driver
  *```js
@@ -8,10 +9,10 @@ const mongodb = require("./mongodb");
  * ```
  * */
 class Collection {
-  constructor(collectionName) {
-    this.collection = async function () {
-      const db = await mongodb.getExtrackerDatabase();
-      return db.collection(collectionName);
+  constructor(isProduction = process.env.NODE_ENV === "production") {
+    this.mongodbClient = async function () {
+      const MongoDbClientInstance = new MongoDbclient(isProduction);
+      return await MongoDbClientInstance.getDatabase();
     };
   }
 
@@ -21,14 +22,16 @@ class Collection {
    * @returns {Promise<string>} `InsertedId`
    */
   static async insertDocument(collectionName, document) {
-    const collection = await new Collection(collectionName).collection();
+    const { db, client } = await new Collection().mongodbClient();
+    const collection = db.collection(collectionName);
     const { acknowledged, insertedId } = await collection.insertOne(document);
     if (!acknowledged) {
-      await mongodb.closeMongoClient();
+      await client.close();
       const error = new Error("Write result not aknowledged :)");
+      error.code = "WR_RESULT_NOT_ACK";
       throw error;
     }
-    await mongodb.closeMongoClient();
+    await client.close();
     return insertedId.toString();
   }
 
@@ -40,9 +43,10 @@ class Collection {
    * @returns {Promise<any|null>} `Document` | `null`
    */
   static async getDocument(collectionName, filter, options) {
-    const collection = await new Collection(collectionName).collection();
+    const { db, client } = await new Collection().mongodbClient();
+    const collection = db.collection(collectionName);
     const document = await collection.findOne(filter, options);
-    await mongodb.closeMongoClient();
+    await client.close();
     return document;
   }
 
@@ -51,14 +55,17 @@ class Collection {
    * @param {string} collectionName - Collection name
    * @param {object} filter - Find query
    * @param {object} options - Options
-   * @returns {any[]} `Documents array`
+   * @returns {{documents: any[], totalDocuments: number}} Documents array and total documents in array
    */
   static async getDocuments(collectionName, filter = {}, options) {
-    const collection = await new Collection(collectionName).collection();
+    const { db, client } = await new Collection().mongodbClient();
+    const collection = db.collection(collectionName);
     const documentsCursor = collection.find(filter, options);
     const documents = await documentsCursor.toArray();
-    await mongodb.closeMongoClient();
-    return documents;
+    await documentsCursor.close();
+
+    await client.close();
+    return { documents, totalDocuments: documents.length };
   }
 }
 
