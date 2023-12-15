@@ -1,13 +1,15 @@
 require("dotenv").config();
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
 /**
- * Class exposing MongoClient instance and a method to access a Db
+ * Class exposing a method to access a Db & MongoClient
+ * and a static method to generate ObjectId
  *
- * ```js
+ * @example
+ *```js
  * const MongoDbClientInstane = new MongoDbClient(false)
- * const client = MongoDbClientInstance.client // MongoClient
- * const Db = MongoDbClientInstance.getDatabase("extracter") //access Db
+ * const {Db, client} = await MongoDbClientInstance.getDatabase("extracter") //access Db and MongoClient
+ * const _id = MongoDbClient.generateObjectId(inputId) // Generate ObjectId
  * ```
  */
 class MongoDbClient {
@@ -17,19 +19,27 @@ class MongoDbClient {
     deprecationErrors: true,
   };
   #mongoClientOptions;
+  #client;
 
   constructor(isProduction) {
     this.#mongoClientOptions = isProduction ? { serverApi: this.#serverApiOptions } : {};
-    this.client = new MongoClient(process.env.MONGO_URL, this.#mongoClientOptions);
+    this.#client = new MongoClient(process.env.MONGO_URL, this.#mongoClientOptions);
   }
-
-  /**
-   * Return Db instance
-   * @param {string?} databaseNme
-   */
   async getDatabase(databaseNme = "extracter") {
-    await this.client.connect();
-    return this.client.db(databaseNme);
+    await this.#client.connect();
+    return {
+      db: this.#client.db(databaseNme),
+      client: this.#client,
+    };
+  }
+  static generateObjectId(inputId) {
+    try {
+      return { _id: new ObjectId(inputId) };
+    } catch (error) {
+      const err = new Error(error);
+      err.statusCode = 500;
+      return { err };
+    }
   }
 }
 
