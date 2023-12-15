@@ -30,4 +30,31 @@ router.post("/register", async function (req, res, next) {
   }
 });
 
+router.get("/authenticate", async function (req, res, next) {
+  const password = req.body.password;
+  const username = req.body.username;
+
+  try {
+    if (password && username) {
+      const filter = { username };
+      const options = { projection: { username: 0 } };
+      const user = await Collection.getDocument("users", filter, options);
+      if (!user) {
+        const error = new Error("Wrong credintials");
+        error.code = "ERR_WRNG_CRED";
+        throw error;
+      }
+      const { hash } = await generateHash(password, user.salt);
+      if (hash != user.hash) {
+        const error = new Error("Wrong credintials");
+        error.code = "ERR_WRNG_CRED";
+        throw error;
+      }
+      res.json({ userId: user._id.toString() });
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
