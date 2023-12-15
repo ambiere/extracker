@@ -18,7 +18,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"username": "newuser123", 
 
 > Note: You can issue a HTTP GET request to /authenticate to get your user :id if forgotten.
 
-````bash
+```bash
 curl -X GET -H "Content-Type: application/json" -d '{"username": "newuser123", "password": "strongpassword"}' https://extracker.fly.dev/v0/api/auth/authenticate
 ```
 
@@ -28,7 +28,7 @@ To add exercise(s) make a HTTP `POST` request to `https://extracker.fly.dev/v0/a
 
 ```bash
 curl -X POST -H "Content-Type: application/json" -d '{"description": "new exercise", "duration": "30"}' https://extracker.fly.dev/v0/api/users/1/exercises
-````
+```
 
 ### 3. User Exercise Logs
 
