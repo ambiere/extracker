@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://kit.fontawesome.com/5ae13bac67.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://kit.fontawesome.com/5ae13bac67.js" crossorigin="anonymous"></script> -->
     <link rel="stylesheet" href="assets/style.css" />
     <title>extracker</title>
   </head>
@@ -13,16 +13,91 @@
     </header>
     <main>
       <hr />
-      <h2>Congratulations!</h2>
-      <p>Thank you for giving <strong>extracker microservice</strong> a try :)</p>
-      <p>՞༅⸙⁂〰༅꙳৽՞⸙꙳⁂〰৽</p>
-      <h2>Example</h2>
-      <a id="resource-link" target="_self"><p></p></a>
-      <h2>Endpoint</h2>
-      <p>To interact with the extracker microservice API you can use HTTP GET and POST method</p>
-      <div id="endpoints"></div>
-      <h2>Documentation</h2>
-      <a href="https://www.github.com/zhid0399123/extracker#README" target="_self"><p>README</p></a>
+      <div class="main-section">
+        <h2>Congratulations!</h2>
+        <p>Thank you for giving <strong>extracker microservice</strong> a try :)</p>
+        <p>՞༅⸙⁂〰༅꙳৽՞⸙꙳⁂〰৽</p>
+        <h2>Play-ground</h2>
+      </div>
+      <div class="playground">
+        <div class="registration-container">
+          <h2>Registration</h2>
+          <form action="auth/register" method="post" enctype="application/x-www-form-urlencoded">
+            <div class="username-container">
+              <label for="username-input">Username</label>
+              <input type="text" name="username" id="username-input" placeholder="Username" required />
+            </div>
+            <div class="password-container">
+              <label for="password-input">Password</label>
+              <input type="text" name="password" id="password-input" placeholder="Password" required />
+            </div>
+            <button type="submit">Sign up</button>
+          </form>
+        </div>
+
+        <div class="registration-container">
+          <h2>Authentication</h2>
+          <form action="auth/authenticate" method="post" enctype="application/x-www-form-urlencoded">
+            <div class="username-container">
+              <label for="username-input">Username</label>
+              <input type="text" name="username" id="username-input" placeholder="Username" required />
+            </div>
+            <div class="password-container">
+              <label for="password-input">Password</label>
+              <input type="text" name="password" id="password-input" placeholder="Password" required />
+            </div>
+            <button type="submit">Sign in</button>
+          </form>
+        </div>
+
+        <div class="exercise-container">
+          <h2>Add exercises</h2>
+          <form method="post" enctype="application/x-www-form-urlencoded">
+            <div class="id-container">
+              <label for="id-input">ID *</label>
+              <input type="text" name="id" id="id-input" placeholder="ID" required />
+            </div>
+            <div class="description-container">
+              <label for="description-input">Description *</label>
+              <input type="text" name="description" id="description-input" placeholder="Description" required />
+            </div>
+            <div class="duration-container">
+              <label for="duration-input">Duration *</label>
+              <input type="text" name="duration" id="duration-input" placeholder="Duration (min)" required />
+            </div>
+            <div class="date-container">
+              <label for="date-input">Date</label>
+              <input type="text" name="date" id="date-input" placeholder="yyyy-mm-dd" />
+            </div>
+            <button type="submit">Add Exercise</button>
+          </form>
+        </div>
+        <div class="log-container">
+          <h2>Log exercises</h2>
+          <form method="GET" action="">
+            <div class="from-container">
+              <label for="from-input">From</label>
+              <input type="text" name="from" id="from-input" placeholder="yyyy-mm-dd" />
+            </div>
+            <div class="to-container">
+              <label for="to-input">To</label>
+              <input type="text" name="to" id="to-input" placeholder="yyyy-mm-dd" />
+            </div>
+            <div class="limit-container">
+              <label for="limit-input">Limit</label>
+              <input type="text" name="limit" id="limit-input" placeholder="Limit (number)" />
+            </div>
+            <button type="submit">Get Logs</button>
+          </form>
+        </div>
+      </div>
+      <div class="main-section main-section--width">
+        <h2>Endpoint</h2>
+        <p>To interact with the extracker microservice API you can use HTTP GET and POST method</p>
+        <div id="endpoints"></div>
+        <h2>Documentation</h2>
+        <a href="https://www.github.com/zhid0399123/extracker#README" target="_self"><p>README</p></a>
+      </div>
     </main>
 
     <footer class="footer">
@@ -36,7 +111,6 @@
         ><h2><i class="fa-brands fa-github"></i>GitHub</h2></a
       >
     </footer>
-
     <script src="assets/index.js"></script>
   </body>
 </html>
