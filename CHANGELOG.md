@@ -1,3 +1,16 @@
+## [0.2.0](https://github.com/zhid0399123/extracker/compare/0.1.0...0.2.0) (2023-12-19)
+
+
+### Features
+
+* **assets/index:** updated endpoints, dynamically add action on exercise and logs form, clear the form input after 250 ([1af28f0](https://github.com/zhid0399123/extracker/commit/1af28f0962bce2d42f0a8dd66ed8e931ae0e3c9b))
+* **assets/style:** updated styles ([5d7efd3](https://github.com/zhid0399123/extracker/commit/5d7efd36889f0f2a4c7b547506a1544a4f339ec9))
+* **middleware/errorHandler:** handle exercise not found ([fec872f](https://github.com/zhid0399123/extracker/commit/fec872f6c0ccd873ec2d249a7cd1d1fc3549df89))
+* **public/index:** added playground feat ([486c5c4](https://github.com/zhid0399123/extracker/commit/486c5c4939cb7119a877c47f67a4a718fd816afe))
+* **routes/auth:** changed authenticate endpoint method to POST ([1242386](https://github.com/zhid0399123/extracker/commit/124238695cb8397aef898e886c3d8c871334afdd))
+* **routes/exercises:** added endpoint to retrieve user exercise ([a100794](https://github.com/zhid0399123/extracker/commit/a10079446df9317655dde6303c9c8216f1606eca))
+* **service/collection:** count documents from collection and return ([cbef6c0](https://github.com/zhid0399123/extracker/commit/cbef6c05644881a01d03b9d9f5397ac359a8ae42))
+
 ## [0.1.0](https://github.com/zhid0399123/extracker/compare/a30aff25fb06d129693f9ede74c0f81bf4266bf1...0.1.0) (2023-12-15)
 
 
