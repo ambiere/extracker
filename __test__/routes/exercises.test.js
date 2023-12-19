@@ -2,7 +2,7 @@ const t = require("tap");
 const request = require("supertest");
 const app = require("../../src/server/server");
 
-t.test("should add and retrieve exercise for registered user", async (t) => {
+t.test("exercises endpoint", async (t) => {
   const credentials = {
     username: "new_user",
     password: "new_password",
@@ -46,6 +46,21 @@ t.test("should add and retrieve exercise for registered user", async (t) => {
       userId: response.body.userId,
       count: 1,
       log: [{ ...exercises, date: new Date(exercises.date).toDateString(), exerciseId: /\w+/ }],
+    });
+  });
+
+  t.test("should fails when description or duration not provided", async (t) => {
+    delete exercises.description;
+    const res = await request(app)
+      .post(`/v0/api/users/${response.body.userId}/exercises`)
+      .set("Content-Type", "application/json")
+      .send(exercises);
+
+    t.equal(res.statusCode, 400);
+    t.match(res.body, {
+      code: "INVALID_CONTENT_ERR",
+      error: "Invalid content. Description and duration are required ",
+      statusCode: 400,
     });
   });
 });
