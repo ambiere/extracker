@@ -18,7 +18,7 @@ router.post("/register", async function (req, res, next) {
         throw error;
       }
       const { salt, hash } = await generateHash(password);
-      const insertedId = await Collection.insertDocument("users", { ...filter, salt, hash });
+      const insertedId = await Collection.insertDocument("users", { username, salt, hash });
       insertedId && res.json({ userId: insertedId });
     } else {
       const error = new Error("password or username required");
@@ -30,7 +30,7 @@ router.post("/register", async function (req, res, next) {
   }
 });
 
-router.get("/authenticate", async function (req, res, next) {
+router.post("/authenticate", async function (req, res, next) {
   const password = req.body.password;
   const username = req.body.username;
 
