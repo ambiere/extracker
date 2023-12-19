@@ -1,3 +1,9 @@
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -26,6 +32,23 @@ header {
   display: flex;
   justify-content: center;
   max-width: 1280px;
+}
+
+.main-section {
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.main-section > h2:last-child {
+  margin-top: 6rem;
+}
+
+.main-section > h2:first-child {
+  margin-top: 6rem;
+}
+
+.main-section--width {
+  max-width: 490px;
 }
 
 hr {
@@ -79,6 +102,15 @@ span {
   font-size: 1.4rem;
 }
 
+.playground {
+  display: flex;
+  justify-content: center;
+  gap: 3.5rem;
+  flex: 1;
+  width: 100%;
+  overflow-y: scroll;
+}
+
 main {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -90,6 +122,7 @@ main > hr:first-child {
   margin-bottom: 4rem;
 }
 
+label,
 a > p,
 main > p {
   font-size: 1.4rem;
@@ -98,6 +131,98 @@ main > p {
 #resource-link > p {
   height: 24px;
   font-size: 1.4rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+  align-items: start;
+}
+
+.registration-container {
+  display: flex;
+  flex-direction: column;
+  flex: 0.3;
+}
+
+.registration-container > h2:not(:first-child) {
+  margin-top: 4rem;
+}
+
+.auth-header {
+  color: red;
+}
+
+.exercise-container {
+  flex: 0.3;
+}
+
+.log-container {
+  flex: 0.3;
+}
+
+.from-container,
+.to-container,
+.limit-container,
+.id-container,
+.date-container,
+.duration-container,
+.description-container,
+.password-container,
+.username-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 8px;
+  width: 100%;
+}
+
+.limit-container,
+.date-container,
+.password-container {
+  margin-bottom: 1rem;
+}
+
+input[type="text"] {
+  height: 38px;
+  width: 100%;
+  background: transparent;
+  border: 1px solid rgba(128, 128, 128, 0.3);
+  border-radius: 6px;
+  outline: 3px solid transparent;
+  padding-inline: 12px;
+  font-size: 1.4rem;
+  font-family: inherit;
+  transition: all;
+  transition-timing-function: ease-in-out;
+  transition-duration: 250ms;
+}
+
+input[type="text"]:focus {
+  outline-color: rgba(128, 128, 128, 0.15);
+}
+
+button {
+  height: 38px;
+  background-color: rgb(12, 12, 12, 0.5);
+  border: 1px solid transparent;
+  width: 100%;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 1.4rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all;
+  transition-timing-function: ease-in-out;
+  transition-duration: 250ms;
+}
+
+button:hover {
+  background-color: rgb(12, 12, 12, 0.8);
+  border-color: rgba(128, 128, 128, 0.2);
 }
 
 @media screen and (max-width: 360px) {
